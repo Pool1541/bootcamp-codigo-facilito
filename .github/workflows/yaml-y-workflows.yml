@@ -21,3 +21,16 @@ jobs:
     steps:
       - name: Adiós mundo
         run: echo "Adiós mundo"
+    
+  third_job:
+    name: Descargar el repositorio
+    runs-on: ubuntu-latest
+    steps:
+      - name: Listar archivos antes de descargar el repositorio
+        run: ls -la
+        
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+        
+      - name: Listar archivos después de descargar el repositorio
+        run: ls -la
