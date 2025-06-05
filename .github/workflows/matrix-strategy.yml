@@ -3,7 +3,7 @@ name: Clase 02 YAML y Workflows
 on:
   push:
     branches:
-      - artifacts
+      - matrix-strategy
 
 jobs:
   first_job:
