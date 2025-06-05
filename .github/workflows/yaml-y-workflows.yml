@@ -65,4 +65,4 @@ jobs:
     needs: fifth_job # Necesita fifh_job se complete antes de ejecutarse.
     steps:
       - name: Acceder al output del job fifth_job
-        run: 'echo El valor del output del job fifth_job es: ${{ needs.fifth_job.outputs.my_output }}"'
+        run: 'echo "El valor del output del job fifth_job es: ${{ needs.fifth_job.outputs.my_output }}"'
