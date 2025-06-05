@@ -27,10 +27,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Listar archivos antes de descargar el repositorio
+        shell: bash # Define el shell a usar
         run: ls -la
         
       - name: Descargar el repositorio
         uses: actions/checkout@v4
-        
+
       - name: Listar archivos después de descargar el repositorio
         run: ls -la
+
+  fourth_job:
+    name: Utilizando Outputs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Definir un output para reutilizar
+        id: step_1
+        run: echo "my_variable=Hola mundo" >> $GITHUB_OUTPUT
+
+      - name: Obtener el output
+        run: 'echo "El valor del step_1 es: ${{ steps.step_1.outputs.my_variable }}"'
