@@ -5,7 +5,7 @@ on:
     branches:
       - artifacts
 
-jobs: 
+jobs:
   first_job:
     name: Generar artefacto
     runs-on: ubuntu-latest
@@ -19,3 +19,17 @@ jobs:
         with:
           name: archivo-test
           path: test.log
+
+  second_job:
+    name: Utilizar el artefacto generado
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar artefacto
+        uses: actions/download-artifact@v4
+        with:
+          name: archivo-test
+      
+      - name: Mostrar contenido del artefacto
+        run: |
+          echo "Contenido del archivo descargado:"
+          cat test.log
