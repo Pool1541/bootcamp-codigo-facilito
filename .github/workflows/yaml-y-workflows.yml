@@ -9,7 +9,7 @@ jobs:
       NAME: "Pool Llerena"
     steps:
       - name: Hola mundo
-        run: echo "Hola mundo $NAME"
+        run: echo Hola mundo, $NAME
   
   second_job:
     if: ${{ github.ref == 'refs/heads/main' }} # Este job solo se ejecuta si el push es a la rama main.
