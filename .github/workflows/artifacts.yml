@@ -23,6 +23,7 @@ jobs:
   second_job:
     name: Utilizar el artefacto generado
     runs-on: ubuntu-latest
+    needs: first_job
     steps:
       - name: Descargar artefacto
         uses: actions/download-artifact@v4
