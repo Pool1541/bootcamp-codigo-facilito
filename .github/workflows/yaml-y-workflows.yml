@@ -1,6 +1,9 @@
 name: Clase 02 YAML y Workflows 
 
-on: push
+on: 
+  push:
+    branches:
+      - main
 
 jobs: 
   first_job: # Si algún job falla, el workflow se detiene.
