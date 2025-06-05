@@ -10,6 +10,7 @@ jobs:
         run: echo "Hola mundo"
   
   second_job:
+    if: ${{ github.ref == 'refs/heads/main' }} # Este job solo se ejecuta si el push es a la rama main.
     needs: first_job
     runs-on: ubuntu-latest
     steps:
