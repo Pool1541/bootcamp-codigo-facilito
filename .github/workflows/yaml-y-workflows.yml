@@ -36,8 +36,9 @@ jobs:
       - name: Listar archivos después de descargar el repositorio
         run: ls -la
 
+  # Outputs a nivel de job (reutilizable en los steps del mismo job)
   fourth_job:
-    name: Utilizando Outputs
+    name: Utilizando Outputs a nivel de job
     runs-on: ubuntu-latest
     steps:
       - name: Definir un output para reutilizar
@@ -46,3 +47,22 @@ jobs:
 
       - name: Obtener el output
         run: 'echo "El valor del step_1 es: ${{ steps.step_1.outputs.my_variable }}"'
+
+  # Outputs a nivel de workflow (reutilizable en otros jobs)
+  fifth_job:
+    name: Utilizando Outputs a nivel de workflow
+    runs-on: ubuntu-latest
+    outputs:
+      my_output: ${{ steps.step_1.outputs.my_variable }}
+    steps:
+      - name: Definir un output para reutilizar
+        id: step_1
+        run: echo "my_variable=Hola mundo desde el output del workflow" >> $GITHUB_OUTPUT
+    
+  sixth_job:
+    name: Acceder a Outputs de otros jobs
+    runs-on: ubuntu-latest
+    needs: fifth_job # Necesita fifh_job se complete antes de ejecutarse.
+    steps:
+      - name: Acceder al output del job fifth_job
+        run: 'echo El valor del output del job fifth_job es: ${{ needs.fifth_job.outputs.my_output }}"'
